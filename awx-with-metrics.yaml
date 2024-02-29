@@ -1,0 +1,10 @@
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+  namespace: awx
+spec:
+  hostname: awx.example.com
+  ingress_type: ingress
+  metrics_enabled: true

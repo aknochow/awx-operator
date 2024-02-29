@@ -249,16 +249,27 @@ extra_volumes: ''
 #     emptyDir: {}
 postgres_extra_volumes: ''
 
-# Use these image versions for Ansible AWX.
 
+# Image Pull Policy
+image_pull_policy: IfNotPresent
+image_pull_secrets: []
+
+# Use these image versions for Ansible AWX.
 _image: quay.io/ansible/awx
 _image_version: "{{ lookup('env', 'DEFAULT_AWX_VERSION') or 'latest' }}"
 _redis_image: docker.io/redis
 _redis_image_version: 7
-_postgres_image: postgres
-_postgres_image_version: 13
-image_pull_policy: IfNotPresent
-image_pull_secrets: []
+_postgres_image: quay.io/sclorg/postgresql-15-c9s
+_postgres_image_version: latest
+
+# Metrics
+_metrics_image: "{{ metrics_image | default(_image) }}"
+_metrics_image_version: "{{ metrics_image_version | default(_image_version) }}"
+_metrics_enabled: "{{ metrics_enabled | default('false') }}"
+_metrics_configmap: "{{ metrics_configmap | default(deployment_type + '-metrics-configmap')"
+_metrics_pvc_claim: "{{ metrics_pvc_claim | default(deployment_name + '-metrics-claim') }}"
+_metrics_cronjob_schedule: "{{ metrics_cronjob_schedule | default('* */1 * * *') }}"
+_metrics_retention_days: "{{ metrics_retention_days | default('60') }}
 
 # Extra commands which will be appended to the initContainer
 # Make sure that each command entered return an exit code 0

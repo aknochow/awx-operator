@@ -1840,6 +1840,27 @@ spec:
                 description: Disable web container's nginx ipv6 listener
                 type: boolean
                 default: false
+              metrics_enabled:
+                description: Enable metrics utility
+                type: boolean
+                default: false
+              metrics_image:
+                description: Registry path to the metrics container to use
+                type: string
+              metrics_image_version:
+                description: metrics container image version to use
+                type: string
+              metrics_configmap:
+                description: configmap where metrics environment variables are stored
+                type: string
+              metrics_cronjob_schedule:
+                description: override default cronjob schedule
+                type: string
+                default: '* */1 * * *' # (hourly)
+              metrics_retention_days:
+                description: duration to store metrics locally
+                type: integer
+                default: '60'
             type: object
           status:
             properties:
