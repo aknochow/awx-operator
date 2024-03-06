@@ -1860,7 +1860,7 @@ spec:
               metrics_retention_days:
                 description: duration to store metrics locally
                 type: integer
-                default: '60'
+                default: 60
             type: object
           status:
             properties:

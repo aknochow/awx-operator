@@ -266,10 +266,10 @@ _postgres_image_version: latest
 _metrics_image: "{{ metrics_image | default(_image) }}"
 _metrics_image_version: "{{ metrics_image_version | default(_image_version) }}"
 _metrics_enabled: "{{ metrics_enabled | default('false') }}"
-_metrics_configmap: "{{ metrics_configmap | default(deployment_type + '-metrics-configmap')"
-_metrics_pvc_claim: "{{ metrics_pvc_claim | default(deployment_name + '-metrics-claim') }}"
+_metrics_configmap: "{{ metrics_configmap | default(deployment_type + '-metrics-configmap') }}"
+_metrics_pvc_claim: "{{ metrics_pvc_claim | default(deployment_type + '-metrics-claim') }}"
 _metrics_cronjob_schedule: "{{ metrics_cronjob_schedule | default('* */1 * * *') }}"
-_metrics_retention_days: "{{ metrics_retention_days | default('60') }}
+_metrics_retention_days: "{{ metrics_retention_days | default('60') }}"
 
 # Extra commands which will be appended to the initContainer
 # Make sure that each command entered return an exit code 0

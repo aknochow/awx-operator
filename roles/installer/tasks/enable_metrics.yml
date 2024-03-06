@@ -1,7 +1,7 @@
 ---
 # Check to make sure provided pvc exists, error loudly if not.  Otherwise, the management pod will just stay in pending state forever.
 - name: Check provided PVC claim exists
-  kubernetes.core.k8_info:
+  kubernetes.core.k8s_info:
     name: "{{ _metrics_pvc_claim }}"
     kind: PersistentVolumeClaim
     namespace: "{{ ansible_operator_meta.namespace }}"
@@ -19,7 +19,7 @@
     - name: Create Kubernetes CronJob for metrics
       kubernetes.core.k8s:
         name: "{{ ansible_operator_meta.name }}-metrics"
-        kind: Deployment
+        kind: CronJob
         state: present
         definition: "{{ lookup('template', 'cronjobs/metrics.yaml.j2') }}"
         wait: true
