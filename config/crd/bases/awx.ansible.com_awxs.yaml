@@ -1854,9 +1854,13 @@ spec:
                 description: configmap where metrics environment variables are stored
                 type: string
               metrics_cronjob_schedule:
-                description: override default cronjob schedule
+                description: override default metrics cronjob schedule
                 type: string
-                default: '* */1 * * *' # (hourly)
+                default: '@hourly'
+              metrics_report_cronjob_schedule:
+                description: override default metrics-report cronjob schedule
+                type: string
+                default: '@monthly'
               metrics_retention_days:
                 description: duration to store metrics locally
                 type: integer
