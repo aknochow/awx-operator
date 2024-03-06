@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ deployment_name }}-metrics-claim
+  name: {{ deployment_type }}-metrics-claim
   namespace: {{ ansible_operator_meta.namespace }}
   ownerReferences: null
   labels:

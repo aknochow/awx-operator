@@ -13,7 +13,7 @@
     - name: Create PVC for metrics
       kubernetes.core.k8s:
         kind: PersistentVolumeClaim
-        definition: "{{ lookup('template', 'persistentvolumeclaims/metrics.yaml.j2') }}"
+        definition: "{{ lookup('template', 'storage/metrics.yaml.j2') }}"
 
 - block: 
     - name: Create Kubernetes CronJob for metrics
