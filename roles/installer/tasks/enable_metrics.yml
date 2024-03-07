@@ -16,12 +16,11 @@
         definition: "{{ lookup('template', 'storage/metrics.yaml.j2') }}"
 
 - block: 
-    - name: Create Kubernetes CronJob for metrics
+    - name: Create Kubernetes CronJob for metrics-gather
       kubernetes.core.k8s:
-        name: "{{ ansible_operator_meta.name }}-metrics"
+        name: "{{ ansible_operator_meta.name }}-metrics-gather"
         kind: CronJob
-        state: present
-        definition: "{{ lookup('template', 'cronjobs/metrics.yaml.j2') }}"
+        definition: "{{ lookup('template', 'cronjobs/metrics-gather.yaml.j2') }}"
         wait: true
 
 - block: 
@@ -29,6 +28,5 @@
       kubernetes.core.k8s:
         name: "{{ ansible_operator_meta.name }}-metrics-report"
         kind: CronJob
-        state: present
         definition: "{{ lookup('template', 'cronjobs/metrics-report.yaml.j2') }}"
         wait: true
